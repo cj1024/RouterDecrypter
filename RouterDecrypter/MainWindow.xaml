@@ -1,0 +1,41 @@
+﻿<Window x:Class="RouterDecrypter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:routerDecrypter="clr-namespace:RouterDecrypter"
+        Title="华为HG255D路由配置文件解密工具" Height="480" Width="800" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="HUAWEI_LOGO.ico">
+    <Grid Margin="6,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Center">
+            <Bold FontSize="20">获取路由器配置文件方式</Bold><LineBreak/><LineBreak/>
+            1.将U盘插在路由器上。<LineBreak/>
+            2.<routerDecrypter:HyperlinkEx NavigateUri="http://192.168.1.1/html/ehomeclient/cfgUSBRestore.cgi?coverusbpath=usb1_1">点此备份配置文件</routerDecrypter:HyperlinkEx><LineBreak/>
+            3.将U盘从路由器上拔下，插到电脑上。<LineBreak/>
+            4.用记事本打开U盘上的e8_Config_backup\ctce8_HG255d.cfg文件<LineBreak/>
+            5.全选并复制其中内容到密文文本框
+        </TextBlock>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="密文："/>
+            <TextBox Grid.Row="1" x:Name="Source" x:FieldModifier="private" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="解密" Click="ButtonDecrypt_OnClick"/>
+                <Button Grid.Column="1" Content="加密" Click="ButtonEncrypt_OnClick"/>
+            </Grid>
+            <TextBlock Grid.Row="3" Text="明文："/>
+            <TextBox Grid.Row="4" x:Name="Output" x:FieldModifier="private" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+        </Grid>
+    </Grid>
+</Window>
